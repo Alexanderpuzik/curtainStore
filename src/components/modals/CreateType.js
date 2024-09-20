@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import Modal from "react-bootstrap/Modal";
-import { Form, Button } from "react-bootstrap";
-import { createType } from "../../http/curtainApi";
+import React, { useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
+import { Form, Button } from 'react-bootstrap';
+import { createType } from '../../http/curtainApi';
 
 const CreateType = ({ show, onHide }) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
 
   const addType = () => {
-    createType({ name: value }).then((data) => {
-      setValue("");
+    createType({ name: value }).then(data => {
+      setValue('');
       onHide();
     });
   };
@@ -24,8 +24,8 @@ const CreateType = ({ show, onHide }) => {
         <Form>
           <Form.Control
             value={value}
-            onChange={(e) => setValue(e.target.value)}
-            placeholder={"Введите название типа"}
+            onChange={e => setValue(e.target.value)}
+            placeholder={'Введите название типа'}
           />
         </Form>
       </Modal.Body>

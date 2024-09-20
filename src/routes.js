@@ -1,4 +1,4 @@
-import Admin from "./pages/Admin";
+import Admin from './pages/Admin';
 import {
   ADMIN_ROUTE,
   BASKET_ROUTE,
@@ -7,12 +7,12 @@ import {
   REGISTRATION_ROUTE,
   CATALOG_ROUTE,
   MAIN_ROUTE,
-} from "./utils/consts";
-import Basket from "./pages/Basket";
-import Catalog from "./pages/Catalog";
-import Auth from "./pages/Auth";
-import CurtainPage from "./pages/CurtainPage";
-import Main from "./pages/Main";
+} from './utils/consts';
+import Basket from './pages/Basket';
+import Catalog from './pages/Catalog';
+import Auth from './pages/Auth';
+import CurtainPage from './pages/CurtainPage';
+import Main from './pages/Main';
 
 export const authRoutes = [
   {
@@ -43,7 +43,7 @@ export const publicRoutes = [
     Component: <Auth />,
   },
   {
-    path: CURTAIN_ROUTE + "/:id",
+    path: CURTAIN_ROUTE + '/:id',
     Component: <CurtainPage />,
   },
 ];

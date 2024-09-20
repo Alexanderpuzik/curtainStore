@@ -1,21 +1,21 @@
-import React, { useContext, useEffect } from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { Container } from "react-bootstrap";
-import TypeBar from "../components/TypeBar";
-import BrandBar from "../components/BrandBar";
-import CurtainList from "../components/CurtainList";
-import { observer } from "mobx-react-lite";
-import { Context } from "..";
-import { fetchBrand, fetchCurtain, fetchType } from "../http/curtainApi";
-import Pages from "../components/Pages";
+import React, { useContext, useEffect } from 'react';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { Container } from 'react-bootstrap';
+import TypeBar from '../components/TypeBar';
+import BrandBar from '../components/BrandBar';
+import CurtainList from '../components/CurtainList';
+import { observer } from 'mobx-react-lite';
+import { Context } from '..';
+import { fetchBrand, fetchCurtain, fetchType } from '../http/curtainApi';
+import Pages from '../components/Pages';
 
 const Catalog = observer(() => {
   const { curtain } = useContext(Context);
   useEffect(() => {
-    fetchType().then((data) => curtain.setTypes(data));
-    fetchBrand().then((data) => curtain.setBrands(data));
-    fetchCurtain(null, null, 1, 3).then((data) => {
+    fetchType().then(data => curtain.setTypes(data));
+    fetchBrand().then(data => curtain.setBrands(data));
+    fetchCurtain(null, null, 1, 3).then(data => {
       curtain.setCurtains(data.rows);
       curtain.setTotalCount(data.count);
     });
@@ -27,7 +27,7 @@ const Catalog = observer(() => {
       curtain.selectedBrand.id,
       curtain.page,
       9
-    ).then((data) => {
+    ).then(data => {
       curtain.setCurtains(data.rows);
       curtain.setTotalCount(data.count);
     });

@@ -1,23 +1,23 @@
-import React, { useContext, useState } from "react";
-import { Container, Form, Button, Row, Col } from "react-bootstrap";
-import Card from "react-bootstrap/Card";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import React, { useContext, useState } from 'react';
+import { Container, Form, Button, Row, Col } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import {
   LOGIN_ROUTE,
   REGISTRATION_ROUTE,
   CATALOG_ROUTE,
-} from "../utils/consts";
-import { login, registration } from "../http/userAPI";
-import { observer } from "mobx-react";
-import { Context } from "..";
+} from '../utils/consts';
+import { login, registration } from '../http/userAPI';
+import { observer } from 'mobx-react';
+import { Context } from '..';
 
 const Auth = observer(() => {
   const { user } = useContext(Context);
   const location = useLocation();
   const navigate = useNavigate();
   const isLogin = location.pathname === LOGIN_ROUTE;
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const click = async () => {
     try {
       let data;
@@ -40,26 +40,26 @@ const Auth = observer(() => {
       style={{ height: window.innerHeight - 54 }}
     >
       <Card style={{ width: 600 }} className="p-5">
-        <h2 className="m-auto">{isLogin ? "Авторизация" : "Регистрация"}</h2>
+        <h2 className="m-auto">{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
         <Form className="d-flex flex-column">
           <Form.Control
             className="mt-3"
             placeholder="Введите ваш email..."
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
           />
           <Form.Control
             className="mt-3"
             placeholder="Введите ваш пароль..."
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
             type="password"
           />
           <Row className="d-flex justify-content-between mt-3 pl-3 pr-3">
             <Col md={9}>
               {isLogin ? (
                 <div>
-                  Нет аккаунта?{" "}
+                  Нет аккаунта?{' '}
                   <NavLink to={REGISTRATION_ROUTE}>Зарегистрируйся!</NavLink>
                 </div>
               ) : (
@@ -70,8 +70,8 @@ const Auth = observer(() => {
               )}
             </Col>
             <Col md={3}>
-              <Button variant={"outline-success"} onClick={click}>
-                {isLogin ? "Войти" : "Регистрация"}
+              <Button variant={'outline-success'} onClick={click}>
+                {isLogin ? 'Войти' : 'Регистрация'}
               </Button>
             </Col>
           </Row>

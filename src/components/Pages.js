@@ -1,7 +1,7 @@
-import { observer } from "mobx-react-lite";
-import React, { useContext } from "react";
-import { Context } from "..";
-import { Pagination } from "react-bootstrap";
+import { observer } from 'mobx-react-lite';
+import React, { useContext } from 'react';
+import { Context } from '..';
+import { Pagination } from 'react-bootstrap';
 
 const Pages = observer(() => {
   const { curtain } = useContext(Context);
@@ -12,7 +12,7 @@ const Pages = observer(() => {
   }
   return (
     <Pagination className="mt-5">
-      {pages.map((page) => (
+      {pages.map(page => (
         <Pagination.Item
           key={page}
           active={curtain.page === page}

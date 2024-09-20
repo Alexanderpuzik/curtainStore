@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import Modal from "react-bootstrap/Modal";
-import { Button, Form } from "react-bootstrap";
-import { createBrand } from "../../http/curtainApi";
+import React, { useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
+import { Button, Form } from 'react-bootstrap';
+import { createBrand } from '../../http/curtainApi';
 
 const CreateBrand = ({ show, onHide }) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const addBrand = () => {
-    createBrand({ name: value }).then((data) => {
-      setValue("");
+    createBrand({ name: value }).then(data => {
+      setValue('');
       onHide();
     });
   };
@@ -22,8 +22,8 @@ const CreateBrand = ({ show, onHide }) => {
         <Form>
           <Form.Control
             value={value}
-            onChange={(e) => setValue(e.target.value)}
-            placeholder={"Введите название бренда"}
+            onChange={e => setValue(e.target.value)}
+            placeholder={'Введите название бренда'}
           />
         </Form>
       </Modal.Body>
