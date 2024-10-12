@@ -1,27 +1,28 @@
 import React, { useContext } from 'react';
-import { observer } from 'mobx-react-lite';
 import { Context } from '../index';
-import { Card, Col, Row } from 'react-bootstrap';
+import { observer } from 'mobx-react-lite';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 const BrandBar = observer(() => {
   const { curtain } = useContext(Context);
-
   return (
-    <Row className="d-flex">
+    <ListGroup>
       {curtain.brands.map(brand => (
-        <Col md={3}>
-          <Card
-            style={{ cursor: 'pointer' }}
-            key={brand.id}
-            className="p-3"
-            onClick={() => curtain.setSelectedBrand(brand)}
-            border={brand.id === curtain.selectedBrand.id ? 'danger' : 'light'}
-          >
-            {brand.name}
-          </Card>
-        </Col>
+        <ListGroup.Item
+          style={{
+            cursor: 'pointer',
+            backgroundColor:
+              brand.id === curtain.selectedBrand.id ? '#FFC107' : '',
+            fontWeight:
+              brand.id === curtain.selectedBrand.id ? 'bold' : 'normal', // Сделать текст жирным
+          }}
+          onClick={() => curtain.setSelectedBrand(brand)}
+          key={brand.id}
+        >
+          {brand.name}
+        </ListGroup.Item>
       ))}
-    </Row>
+    </ListGroup>
   );
 });
 

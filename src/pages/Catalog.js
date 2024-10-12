@@ -15,7 +15,7 @@ const Catalog = observer(() => {
   useEffect(() => {
     fetchType().then(data => curtain.setTypes(data));
     fetchBrand().then(data => curtain.setBrands(data));
-    fetchCurtain(null, null, 1, 3).then(data => {
+    fetchCurtain(null, null, 1, 9).then(data => {
       curtain.setCurtains(data.rows);
       curtain.setTotalCount(data.count);
     });
@@ -37,10 +37,10 @@ const Catalog = observer(() => {
     <Container>
       <Row className="mt-2">
         <Col md={3}>
-          <TypeBar />
+          <BrandBar />
         </Col>
         <Col md={9}>
-          <BrandBar />
+          <TypeBar />
           <CurtainList />
           <Pages />
         </Col>

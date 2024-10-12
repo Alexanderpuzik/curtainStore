@@ -24,37 +24,59 @@ const NavBar = observer(() => {
   };
 
   return (
-    <Navbar style={{ backgroundColor: '#000000', marginTop: '20px' }}>
+    <Navbar
+      style={{
+        backgroundColor: '#000000',
+        marginTop: '20px',
+        height: '60px', // Увеличенная высота
+        padding: '0.75rem', // Немного увеличенный отступ
+      }}
+    >
       <Container>
         <Nav className="ml-auto">
-          <NavLink className="ms-2" style={{ color: 'white' }} to={MAIN_ROUTE}>
+          <NavLink
+            className="ms-2"
+            style={{ color: '#FFC107', fontSize: '1rem' }} // Средний размер шрифта
+            to={MAIN_ROUTE}
+          >
             Главная
           </NavLink>
           <NavLink
             className="ms-2"
-            style={{ color: 'white' }}
+            style={{ color: '#FFC107', fontSize: '1rem' }} // Средний размер шрифта
             to={CATALOG_ROUTE}
           >
             Каталог
           </NavLink>
         </Nav>
         {user.isAuth ? (
-          <Nav className="ml-auto" style={{ color: 'white' }}>
+          <Nav className="ml-auto" style={{ color: '#FFC107' }}>
             <Button
-              variant={'outline-light'}
+              variant={'outline-warning'}
               onClick={() => navigate(ADMIN_ROUTE)}
+              className="me-2"
+              size="sm"
+              style={{ fontSize: '0.9rem' }} // Средний размер шрифта
             >
               Админ панель
             </Button>
-            <Button variant={'outline-light'} className="ms-2" onClick={logOut}>
+            <Button
+              variant={'outline-warning'}
+              className="ms-2"
+              onClick={logOut}
+              size="sm"
+              style={{ fontSize: '0.9rem' }} // Средний размер шрифта
+            >
               Выйти
             </Button>
           </Nav>
         ) : (
-          <Nav className="ml-auto" style={{ color: 'white' }}>
+          <Nav className="ml-auto" style={{ color: '#FFC107' }}>
             <Button
-              variant={'outline-light'}
+              variant={'outline-warning'}
               onClick={() => navigate(LOGIN_ROUTE)}
+              size="sm"
+              style={{ fontSize: '0.9rem' }} // Средний размер шрифта
             >
               Авторизация
             </Button>

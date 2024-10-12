@@ -26,7 +26,11 @@ export const fetchOneBrand = async id => {
 };
 
 export const createCurtain = async curtain => {
-  const { data } = await $authHost.post('api/curtain/', curtain);
+  const { data } = await $authHost.post('api/curtain/', curtain, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
   return data;
 };
 

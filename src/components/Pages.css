@@ -1,0 +1,4 @@
+.active-page {
+  background-color: #ffc107 !important; /* Ваш желтый цвет */
+  border-color: #ffc107 !important; /* Если хотите поменять также цвет границы */
+}

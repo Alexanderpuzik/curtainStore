@@ -1,23 +1,45 @@
 import React, { useContext } from 'react';
-import { Context } from '../index';
 import { observer } from 'mobx-react-lite';
-import ListGroup from 'react-bootstrap/ListGroup';
+import { Context } from '../index';
+import { Card, Col, Row } from 'react-bootstrap';
 
 const TypeBar = observer(() => {
   const { curtain } = useContext(Context);
+
   return (
-    <ListGroup>
+    <Row>
       {curtain.types.map(type => (
-        <ListGroup.Item
-          style={{ cursor: 'pointer' }}
-          active={type.id === curtain.selectedType.id}
-          onClick={() => curtain.setSelectedType(type)}
-          key={type.id}
-        >
-          {type.name}
-        </ListGroup.Item>
+        <Col md={3} key={type.id}>
+          {' '}
+          <Card
+            style={{
+              cursor: 'pointer',
+              textAlign: 'center',
+              fontWeight: 'bold',
+              padding: '1rem',
+              border: 'none',
+              display: 'flex',
+              justifyContent: 'center', // Центрирует содержимое horizontally
+              alignItems: 'center', // Центрирует содержимое vertically
+            }}
+            className="p-1"
+            onClick={() => curtain.setSelectedType(type)} // Обновляем функцию выбора типа
+          >
+            <span
+              style={{
+                borderBottom:
+                  type.id === curtain.selectedType.id // Проверка для selectedType
+                    ? '4px solid #FFC107'
+                    : 'none',
+                lineHeight: '1', // Устраняем лишний вертикальный отступ
+              }}
+            >
+              {type.name}
+            </span>
+          </Card>
+        </Col>
       ))}
-    </ListGroup>
+    </Row>
   );
 });
 

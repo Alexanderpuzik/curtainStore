@@ -1,13 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import {
-  Button,
-  Col,
-  Dropdown,
-  DropdownItem,
-  Form,
-  Row,
-} from 'react-bootstrap';
+import { Button, Col, Dropdown, Form, Row } from 'react-bootstrap';
+
 import { Context } from '../..';
 import { createCurtain, fetchBrand, fetchType } from '../../http/curtainApi';
 import { observer } from 'mobx-react-lite';
@@ -41,6 +35,7 @@ const CreateCurtain = observer(({ show, onHide }) => {
   };
 
   const addCurtain = () => {
+    console.log('Add Curtain button clicked');
     const formData = new FormData();
     formData.append('name', name);
     formData.append('price', `${price}`);
@@ -48,13 +43,35 @@ const CreateCurtain = observer(({ show, onHide }) => {
     formData.append('brandId', curtain.selectedBrand.id);
     formData.append('typeId', curtain.selectedType.id);
     formData.append('info', JSON.stringify(info));
-    createCurtain(formData).then(data => onHide());
-  };
+
+    createCurtain(formData)
+      .then(() => {
+        onHide();
+      })
+      .catch(error => {
+        if (error.response) {
+          console.error('Ответ сервера:', error.response.data);
+          console.error('Код состояния:', error.response.status);
+          console.error('Заголовки:', error.response.headers);
+        } else if (error.request) {
+          console.error(
+            'Запрос был сделан, но ответа не получено',
+            error.request
+          );
+        } else {
+          console.error(
+            'Произошла ошибка при настройке запроса',
+            error.message
+          );
+        }
+      });
+  }; // Исправлено: добавлена закрывающая скобка
+
   return (
     <Modal show={show} onHide={onHide} size="lg" centered>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Добавить устройство
+          Добавить ткань
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -95,7 +112,7 @@ const CreateCurtain = observer(({ show, onHide }) => {
               setName(e.target.value);
             }}
             className="mt-3"
-            placeholder="Введите название устройства"
+            placeholder="Введите название ткани"
           />
 
           <Form.Control
@@ -104,7 +121,7 @@ const CreateCurtain = observer(({ show, onHide }) => {
               setPrice(Number(e.target.value));
             }}
             className="mt-3"
-            placeholder="Введите стоимость устройства"
+            placeholder="Введите стоимость ткани"
           />
 
           <Form.Control className="mt-3" type="file" onChange={selectFile} />
@@ -113,7 +130,9 @@ const CreateCurtain = observer(({ show, onHide }) => {
             Добавить новое свойство
           </Button>
           {info.map(i => (
-            <Row className="mt-2" Key={i.number}>
+            <Row className="mt-2" key={i.number}>
+              {' '}
+              {/* Исправлено: key с маленькой буквы */}
               <Col md={4}>
                 <Form.Control
                   value={i.title}
@@ -123,7 +142,7 @@ const CreateCurtain = observer(({ show, onHide }) => {
               </Col>
               <Col md={4}>
                 <Form.Control
-                  value={i.desription}
+                  value={i.description} // Исправлено: правильное имя свойства
                   onChange={e =>
                     changeInfo('description', e.target.value, i.number)
                   }

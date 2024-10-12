@@ -18,6 +18,34 @@ const Auth = observer(() => {
   const isLogin = location.pathname === LOGIN_ROUTE;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordStrength, setPasswordStrength] = useState('');
+
+  const evaluatePasswordStrength = password => {
+    let strength = 'Очень слабый';
+    if (password.length >= 8) {
+      strength = 'Слабый';
+    }
+    if (/[A-Z]/.test(password) && /[0-9]/.test(password)) {
+      strength = 'Средний';
+    }
+    if (
+      /[A-Z]/.test(password) &&
+      /[0-9]/.test(password) &&
+      /[^A-Za-z0-9]/.test(password)
+    ) {
+      strength = 'Сильный';
+    }
+    if (
+      password.length >= 12 &&
+      /[A-Z]/.test(password) &&
+      /[0-9]/.test(password) &&
+      /[^A-Za-z0-9]/.test(password)
+    ) {
+      strength = 'Очень сильный';
+    }
+    return strength;
+  };
+
   const click = async () => {
     try {
       let data;
@@ -32,6 +60,12 @@ const Auth = observer(() => {
     } catch (e) {
       alert(e.response.data.message);
     }
+  };
+
+  const handlePasswordChange = event => {
+    const newPassword = event.target.value;
+    setPassword(newPassword);
+    setPasswordStrength(evaluatePasswordStrength(newPassword));
   };
 
   return (
@@ -52,9 +86,12 @@ const Auth = observer(() => {
             className="mt-3"
             placeholder="Введите ваш пароль..."
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={handlePasswordChange}
             type="password"
           />
+          <div className="mt-1 text-muted">
+            Надежность пароля: <strong>{passwordStrength}</strong>
+          </div>
           <Row className="d-flex justify-content-between mt-3 pl-3 pr-3">
             <Col md={9}>
               {isLogin ? (
