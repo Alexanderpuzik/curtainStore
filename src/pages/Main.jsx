@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { CURTAIN_ROUTE } from '../utils/consts';
 import number from '../assents/number.png';
 import email from '../assents/email.png';
+import { change } from '../http/userAPI';
 
 const Main = () => {
   const subscriptions = [
@@ -57,6 +58,15 @@ const Main = () => {
     fetchCurtain(null, null, 1, 8).then(data => setCurtains(data.rows));
   }, []);
 
+  const handleChangeAndRefresh = async () => {
+    try {
+      await change();
+      window.location.reload(); // Refresh the page after change
+    } catch (error) {
+      console.error('Error updating subscription:', error);
+    }
+  };
+
   return (
     <div className="container">
       <div className="about-section">
@@ -107,7 +117,12 @@ const Main = () => {
                     <li key={idx}>- {reason}</li>
                   ))}
                 </ul>
-                <Button className="subscription-button">Купить подписку</Button>
+                <Button
+                  className="subscription-button"
+                  onClick={handleChangeAndRefresh}
+                >
+                  Купить подписку
+                </Button>
               </div>
             </Col>
           ))}

@@ -8,11 +8,13 @@ import {
   LOGIN_ROUTE,
   CATALOG_ROUTE,
   MAIN_ROUTE,
+  KONSTRUKT_ROUTE,
 } from '../utils/consts';
 import Navbar from 'react-bootstrap/Navbar';
 import { Button } from 'react-bootstrap';
 import { observer } from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
+import Konstrukt from '../pages/Konstrukt';
 
 const NavBar = observer(() => {
   const { user } = useContext(Context);
@@ -47,6 +49,13 @@ const NavBar = observer(() => {
             to={CATALOG_ROUTE}
           >
             Каталог
+          </NavLink>
+          <NavLink
+            className="ms-2"
+            style={{ color: '#FFC107', fontSize: '1rem' }} // Средний размер шрифта
+            to={KONSTRUKT_ROUTE}
+          >
+            Конструктор
           </NavLink>
         </Nav>
         {user.isAuth ? (

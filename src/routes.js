@@ -7,12 +7,14 @@ import {
   REGISTRATION_ROUTE,
   CATALOG_ROUTE,
   MAIN_ROUTE,
+  KONSTRUKT_ROUTE,
 } from './utils/consts';
 import Basket from './pages/Basket';
 import Catalog from './pages/Catalog';
 import Auth from './pages/Auth';
 import CurtainPage from './pages/CurtainPage';
 import Main from './pages/Main';
+import Konstrukt from './pages/Konstrukt';
 
 export const authRoutes = [
   {
@@ -26,6 +28,10 @@ export const authRoutes = [
 ];
 
 export const publicRoutes = [
+  {
+    path: KONSTRUKT_ROUTE,
+    Component: <Konstrukt />,
+  },
   {
     path: MAIN_ROUTE,
     Component: <Main />,
